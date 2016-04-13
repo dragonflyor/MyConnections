@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="DatePicker-2.2.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/cn.aigestudio.datepicker/DatePicker/2.2.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/cn.aigestudio.datepicker/DatePicker/2.2.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.aigestudio.datepicker/DatePicker/2.2.0/af595f557ce944407662fec17d4782bd11bb4189/DatePicker-2.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

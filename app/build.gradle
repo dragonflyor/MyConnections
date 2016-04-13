@@ -1,0 +1,123 @@
+apply plugin: 'com.android.application'
+apply plugin: 'packer'
+
+
+packer {
+    /**渠道包**/
+    manifestMatcher = ['UMENG_CHANNEL', 'Promotion_Market']
+    archiveOutput = file(new File(project.rootProject.buildDir.path, "apks"))
+    archiveNameFormat = '${appPkg}-c-${buildType}-${buildTime}'
+
+    /**版本号自增**/
+    // 指定是否使用build版本号自增
+    buildNumberAuto = true
+    // 指定使用版本号自增的buildType，默认是全部
+    buildNumberTypeMatcher = ['release', 'debug']
+}
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+    defaultConfig {
+        // Warning:Renderscript support mode is not currently supported with renderscript target 21+
+        renderscriptTargetApi 22
+        renderscriptSupportModeEnabled true
+
+        applicationId "com.yuzhi.fine"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'AndroidFine'
+            keyPassword '11118888'
+            storeFile file('keystore/release.jks')
+            storePassword '11118888'
+        }
+        debug {
+            keyAlias 'debug'
+            keyPassword '11118888'
+            storeFile file('keystore/debug.jks')
+            storePassword '11118888'
+        }
+    }
+
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+    }
+    sourceSets {
+        main() {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+    lintOptions {
+        abortOnError false
+    }
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    packagingOptions {
+        exclude 'lib/armeabi-v7a/librsjni.so'
+        exclude 'lib/armeabi-v7a/libRSSupport.so'
+        exclude 'lib/mips/librsjni.so'
+        exclude 'lib/mips/libRSSupport.so'
+        exclude 'lib/x86/librsjni.so'
+        exclude 'lib/x86/libRSSupport.so'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.alibaba:fastjson:1.1.34.android'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    compile 'in.srain.cube:ultra-ptr:1.0.10'
+    compile 'com.android.support:support-v4:22.0.1'
+    compile 'com.weiwangcn.betterspinner:library:1.1.0'
+    compile 'cn.aigestudio.datepicker:DatePicker:2.2.0'
+    compile 'org.xutils:xutils:3.3.32'
+
+    compile files('D:/my_androidworkspace/my_androidfine/MyAndroidFine/libs/gson-2.3.1.jar')
+    compile files('D:/my_androidworkspace/my_androidfine/MyAndroidFine/libs/xUtils-2.6.14.jar')
+}
+

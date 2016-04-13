@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+         <declare-styleable name="EditInputItemView">
+	        <attr name="mtitle" format="string" />
+	        <attr name="mhint" format="string" />
+	        <attr name="mtext" format="string" />
+        </declare-styleable>
+
+	<declare-styleable name="ChooseInputItemView">
+		<attr name="mtitle_civ" format="string" />
+		<attr name="mhint_civ" format="string" />
+		<attr name="mtext_civ" format="string" />
+	</declare-styleable>
+
+
+	<declare-styleable name="ChooseDateInputView">
+		<attr name="mtitle_cdv" format="string" />
+		<attr name="mhint_cdv" format="string" />
+		<attr name="mtext_cdv" format="string" />
+	</declare-styleable>
+    
+</resources>
